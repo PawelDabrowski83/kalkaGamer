@@ -2,6 +2,9 @@ package com.facebook.games.utils;
 
 public class MessageParserImpl implements MessageParser {
     public String print(String string){
+        if (string == null || string.isBlank()){
+            return "";
+        }
         return string;
     }
 
