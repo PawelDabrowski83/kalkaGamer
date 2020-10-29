@@ -2,11 +2,12 @@ package com.facebook.games;
 
 import com.facebook.games.gameInterfaces.GameWithScanner;
 import com.facebook.games.lotek.LotekGame;
+import com.facebook.games.utils.MessageParser;
+import com.facebook.games.utils.MessageParserImpl;
 import com.facebook.games.utils.ScannerWrapper;
 import com.facebook.games.utils.ScannerWrapperImpl;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Main {
@@ -23,13 +24,13 @@ public class Main {
         }
 
         Locale currentLocale;
-        ResourceBundle messages;
-
         currentLocale = new Locale(language, country);
 
         try (Scanner scanner = new Scanner(System.in)){
             ScannerWrapper scannerWrapper = new ScannerWrapperImpl(scanner);
-            GameWithScanner game = new LotekGame();
+            MessageParser messageParser = new MessageParserImpl();
+
+            GameWithScanner game = new LotekGame(currentLocale, messageParser);
             game.play(scannerWrapper);
         }
 
