@@ -1,7 +1,7 @@
 package com.facebook.games.utils;
 
-public interface ScannerWrapper {
+public interface ScannerWrapper{
     String getString();
-    int getInt();
-    double getDouble();
+    int getInt() throws NumberFormatException;
+    double getDouble() throws NumberFormatException;
 }

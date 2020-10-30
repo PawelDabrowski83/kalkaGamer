@@ -15,25 +15,25 @@ public class MessageParserImplTest {
 
     MessageParser messageParser = new MessageParserImpl();
 
-    @DisplayName("should print() return simple string")
+    @DisplayName("should parse() return simple string")
     @ParameterizedTest
     @ValueSource(strings = {"test", "Hańba", "abc", "", ";"})
     void print(String expected){
-        assertEquals(expected, messageParser.print(expected));
+        assertEquals(expected, messageParser.parse(expected));
     }
 
     @Test
-    public void shouldPrintGivenNullReturnEmpty(){
-        assertEquals("", messageParser.print(null));
+    public void shouldParseGivenNullReturnEmpty(){
+        assertEquals("", messageParser.parse(null));
     }
 
-    @DisplayName("should print(String, int) format valid String")
+    @DisplayName("should parse(String, int) format valid String")
     @ParameterizedTest
-    @MethodSource("printWithOneIntArgumentsProvider")
+    @MethodSource("parseWithOneIntArgumentsProvider")
     void print(String expected, String given, int arg1){
-        assertEquals(expected, messageParser.print(given, arg1));
+        assertEquals(expected, messageParser.parse(given, arg1));
     }
-    private static Stream<Arguments> printWithOneIntArgumentsProvider(){
+    private static Stream<Arguments> parseWithOneIntArgumentsProvider(){
         return Stream.of(
                 Arguments.of("test 5", "test %d", 5),
                 Arguments.of("Ab234c ", "Ab2%dc ", 34),
@@ -43,13 +43,13 @@ public class MessageParserImplTest {
         );
     }
 
-    @DisplayName("should print(String, int1, int2) return properly formatted String")
+    @DisplayName("should parse(String, int1, int2) return properly formatted String")
     @ParameterizedTest
-    @MethodSource("printWithTwoIntArgumentsProvider")
+    @MethodSource("parseWithTwoIntArgumentsProvider")
     void print(String expected, String given, int arg1, int arg2){
-        assertEquals(expected, messageParser.print(given, arg1, arg2));
+        assertEquals(expected, messageParser.parse(given, arg1, arg2));
     }
-    private static Stream<Arguments> printWithTwoIntArgumentsProvider(){
+    private static Stream<Arguments> parseWithTwoIntArgumentsProvider(){
         return Stream.of(
                 Arguments.of("1111test 33", "%dtest %d", 1111, 33),
                 Arguments.of("1701", "%d%d", 170, 1),
@@ -57,13 +57,13 @@ public class MessageParserImplTest {
         );
     }
 
-    @DisplayName("should print(String, int1... int6) return properly formatted String")
+    @DisplayName("should parse(String, int1... int6) return properly formatted String")
     @ParameterizedTest
-    @MethodSource("printWithSixIntArgumentsProvider")
+    @MethodSource("parseWithSixIntArgumentsProvider")
     void print(String expected, String given, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6){
-        assertEquals(expected, messageParser.print(given, arg1, arg2, arg3, arg4, arg5, arg6));
+        assertEquals(expected, messageParser.parse(given, arg1, arg2, arg3, arg4, arg5, arg6));
     }
-    private static Stream<Arguments> printWithSixIntArgumentsProvider(){
+    private static Stream<Arguments> parseWithSixIntArgumentsProvider(){
         return Stream.of(
                 Arguments.of("Winning numbers are: 10, 11, 12, 13, 14, 15", "Winning numbers are: %d, %d, %d, %d, %d, %d", 10, 11, 12, 13, 14, 15),
                 Arguments.of("1 2 3 4 5 6", "%d %d %d %d %d %d", 1, 2, 3, 4, 5, 6),
