@@ -1,8 +1,7 @@
 package com.facebook.games.gameInterfaces;
 
-
-import com.facebook.games.utils.ScannerWrapper;
+import java.util.Scanner;
 
 public interface GameWithScanner {
-    void play(ScannerWrapper scannerWrapper);
+    void play(Scanner scanner);
 }
