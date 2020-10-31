@@ -2,6 +2,8 @@ package com.facebook.games.lotek;
 
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MessagePrinter {
 
@@ -11,7 +13,7 @@ public class MessagePrinter {
     protected static final String NUMBER_INPUT_STRONGER = "Please enter real number:";
     protected static final String NUMBER_DUPLICATE = "Your number is already saved, please enter a unique number";
     protected static final String NUMBER_OUT_BOUNDS = "Number out of range: %d-%d\n";
-    protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %d, %d, %d, %d, %d, %d";
+    protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %s";
     private final Scanner scanner;
 
     public MessagePrinter(Scanner scanner) {
@@ -55,6 +57,18 @@ public class MessagePrinter {
 
     private boolean isNumberOutOfBounds(int number){
         return number > LotekGame.UPPER_LIMIT_LOTTERY_NUMBERS || number < LotekGame.LOWER_LIMIT_LOTTERY_NUMBERS;
+    }
+
+    protected void displayUserNumbers(Set<Integer> numbers){
+        String numberPoolAsString = stringifySet(numbers);
+    }
+
+    protected String stringifySet(Set<Integer> numbers){
+        return Stream.of(numbers)
+                .map(String::valueOf)
+                .collect(Collectors.joining(","))
+                .replace("[", "")
+                .replace("]", "");
     }
 
 }
