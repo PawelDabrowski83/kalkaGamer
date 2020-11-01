@@ -21,5 +21,6 @@ public class LotekGame implements GameWithScanner {
     public void play(Scanner scanner) {
         messagePrinter.displayIntroduction();
         messagePrinter.collectNumbers(numberPool);
+        messagePrinter.displayUserNumbers(numberPool);
     }
 }

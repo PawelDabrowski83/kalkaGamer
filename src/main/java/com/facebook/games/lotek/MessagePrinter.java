@@ -13,7 +13,7 @@ public class MessagePrinter {
     protected static final String NUMBER_INPUT_STRONGER = "Please enter real number:";
     protected static final String NUMBER_DUPLICATE = "Your number is already saved, please enter a unique number";
     protected static final String NUMBER_OUT_BOUNDS = "Number out of range: %d-%d\n";
-    protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %s";
+    protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %s\n";
     private final Scanner scanner;
 
     public MessagePrinter(Scanner scanner) {
@@ -25,7 +25,7 @@ public class MessagePrinter {
     }
 
     protected void collectNumbers(Set<Integer> numberPool){
-        while(numberPool.size() <= LotekGame.NUMBER_POOL){
+        while(numberPool.size() < LotekGame.NUMBER_POOL){
             int numberInput = getNumber();
 
             if (isNumberDuplicate(numberInput, numberPool)){
@@ -38,7 +38,6 @@ public class MessagePrinter {
             }
             numberPool.add(numberInput);
         }
-        System.out.println(NUMBER_POOL_COMPLETED);
     }
 
     private int getNumber(){
@@ -61,6 +60,7 @@ public class MessagePrinter {
 
     protected void displayUserNumbers(Set<Integer> numbers){
         String numberPoolAsString = stringifySet(numbers);
+        System.out.printf(NUMBER_POOL_COMPLETED, numberPoolAsString);
     }
 
     protected String stringifySet(Set<Integer> numbers){
