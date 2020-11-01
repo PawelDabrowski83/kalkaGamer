@@ -11,7 +11,6 @@ public class Utils {
         if (inclusiveTo == inclusiveFrom){
             return inclusiveFrom;
         }
-        int range = inclusiveTo - inclusiveFrom;
-        return ThreadLocalRandom.current().nextInt(range) + inclusiveFrom;
+        return ThreadLocalRandom.current().nextInt(inclusiveFrom, inclusiveTo);
     }
 }
