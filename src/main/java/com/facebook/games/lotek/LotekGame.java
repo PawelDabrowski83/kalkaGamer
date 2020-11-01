@@ -11,16 +11,17 @@ public class LotekGame implements GameWithScanner {
     public static final int UPPER_LIMIT_LOTTERY_NUMBERS = 66;
     public static final int NUMBER_POOL = 6;
     private final Set<Integer> numberPool = new TreeSet<>();
-    private final MessagePrinter messagePrinter;
+    private final Set<Integer> winningPool = new TreeSet<>();
+    private final LotekService lotekService;
 
-    public LotekGame(MessagePrinter messagePrinter) {
-        this.messagePrinter = messagePrinter;
+    public LotekGame(LotekService lotekService) {
+        this.lotekService = lotekService;
     }
 
     @Override
     public void play(Scanner scanner) {
-        messagePrinter.displayIntroduction();
-        messagePrinter.collectNumbers(numberPool);
-        messagePrinter.displayUserNumbers(numberPool);
+        lotekService.displayIntroduction();
+        lotekService.collectNumbers(numberPool);
+        lotekService.displayUserNumbers(numberPool);
     }
 }

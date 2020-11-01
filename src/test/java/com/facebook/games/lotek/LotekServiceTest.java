@@ -1,7 +1,6 @@
 package com.facebook.games.lotek;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,14 +13,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MessagePrinterTest {
-    MessagePrinter messagePrinter = new MessagePrinter(new Scanner(System.in));
+public class LotekServiceTest {
+    LotekService lotekService = new LotekService(new Scanner(System.in));
 
     @DisplayName("Should stringifySet() work properly")
     @ParameterizedTest
     @MethodSource("stringifySetArgumentsProvider")
     void stringifySet(String expected, Set<Integer> given){
-        assertEquals(expected, messagePrinter.stringifySet(given));
+        assertEquals(expected, lotekService.stringifySet(given));
     }
     private static Stream<Arguments> stringifySetArgumentsProvider(){
         return Stream.of(

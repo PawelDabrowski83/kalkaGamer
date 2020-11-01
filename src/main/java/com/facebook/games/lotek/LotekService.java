@@ -2,10 +2,8 @@ package com.facebook.games.lotek;
 
 import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class MessagePrinter {
+public class LotekService {
 
     protected static final String INTRODUCTION = "Welcome to the Lottery Game.\n" +
             "Pick 6 numbers within range %d-%d and check your luck!\n";
@@ -16,7 +14,7 @@ public class MessagePrinter {
     protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %s\n";
     private final Scanner scanner;
 
-    public MessagePrinter(Scanner scanner) {
+    public LotekService(Scanner scanner) {
         this.scanner = scanner;
     }
 
