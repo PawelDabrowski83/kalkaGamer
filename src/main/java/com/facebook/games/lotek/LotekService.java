@@ -48,11 +48,11 @@ public class LotekService {
         return scanner.nextInt();
     }
 
-    private boolean isNumberDuplicate(int number, Set<Integer> numberPool){
+    protected boolean isNumberDuplicate(int number, Set<Integer> numberPool){
         return numberPool.contains(number);
     }
 
-    private boolean isNumberOutOfBounds(int number){
+    protected boolean isNumberOutOfBounds(int number){
         return number > LotekGame.UPPER_LIMIT_LOTTERY_NUMBERS || number < LotekGame.LOWER_LIMIT_LOTTERY_NUMBERS;
     }
 

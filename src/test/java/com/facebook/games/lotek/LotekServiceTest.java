@@ -29,4 +29,19 @@ public class LotekServiceTest {
         );
     }
 
+    @DisplayName("should isNumberDuplicate() return correct answer")
+    @ParameterizedTest
+    @MethodSource("isNumberDuplicateArgumentsProvider")
+    void isNumberDuplicate(boolean expected, int number, Set<Integer> numberPool){
+        assertEquals(expected, lotekService.isNumberDuplicate(number, numberPool));
+    }
+    private static Stream<Arguments> isNumberDuplicateArgumentsProvider(){
+        return Stream.of(
+                Arguments.of(true, 1, Set.of(1, 2, 3)),
+                Arguments.of(false, 0, Set.of(1, 2, 3)),
+                Arguments.of(false, 1, Collections.emptySet()),
+                Arguments.of(false, Integer.MAX_VALUE, Set.of(1, 2, 3)),
+                Arguments.of(true, Integer.MIN_VALUE, Set.of(Integer.MIN_VALUE, Integer.MAX_VALUE, -19))
+        );
+    }
 }
