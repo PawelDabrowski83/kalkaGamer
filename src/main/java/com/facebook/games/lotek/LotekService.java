@@ -1,5 +1,7 @@
 package com.facebook.games.lotek;
 
+import com.facebook.games.utils.Utils;
+
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -22,6 +24,13 @@ public class LotekService {
         this.scanner = new Scanner(System.in);
         this.numberPool = numberPool;
         this.winningPool = new TreeSet<>();
+    }
+
+    // for tests
+    protected LotekService(Set<Integer> numberPool, Set<Integer> winningPool){
+        this.scanner = new Scanner(System.in);
+        this.numberPool = numberPool;
+        this.winningPool = winningPool;
     }
 
     protected void displayIntroduction(){
@@ -68,6 +77,27 @@ public class LotekService {
 
     protected String stringifySet(Set<Integer> numbers){
         return numbers.toString().replaceAll("[]\\[]", "");
+    }
+
+    protected void getWinningNumbers(){
+        while (winningPool.size() < NUMBER_POOL){
+            int currentNumber = Utils.getRandomNumber(LOWER_LIMIT_LOTTERY_NUMBERS, UPPER_LIMIT_LOTTERY_NUMBERS);
+            winningPool.add(currentNumber);
+        }
+    }
+
+    protected void displayWinningNumbers(){
+        String winningNumbersAsString = stringifySet(winningPool);
+        System.out.printf(WINNING_NUMBERS_PRESENTATION, winningNumbersAsString);
+    }
+
+    protected int countGuessedNumbers(){
+        return (int) numberPool.stream().filter(winningPool::contains).count();
+    }
+
+    protected void displayLotteryResolution(){
+        int guessedNumbers = countGuessedNumbers();
+        System.out.printf(DISPLAY_RESULT, guessedNumbers);
     }
 
 }

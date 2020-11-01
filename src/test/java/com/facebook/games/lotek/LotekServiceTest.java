@@ -62,4 +62,20 @@ public class LotekServiceTest {
                 Arguments.of(true, Integer.MAX_VALUE)
         );
     }
+
+    @DisplayName("Should countGuessedNumbers() return how many lottery numbers you guessed")
+    @ParameterizedTest
+    @MethodSource("countGuessedNumbersArgumentsProvider")
+    void countGuessedNumbers(int expected, Set<Integer> numbersGuessed, Set<Integer> lotteryNumbers){
+        lotekService = new LotekService(numbersGuessed, lotteryNumbers);
+        assertEquals(expected, lotekService.countGuessedNumbers());
+    }
+    private static Stream<Arguments> countGuessedNumbersArgumentsProvider(){
+        return Stream.of(
+                Arguments.of(0, Set.of(1, 2, 3, 4, 5, 6), Set.of(11, 22, 33, 44, 55, 66)),
+                Arguments.of(1, Set.of(1, 2, 3, 4, 5, 6), Set.of(6, 7, 8)),
+                Arguments.of(2, Set.of(11, 12, 13, 14, 15), Set.of(15, 13)),
+                Arguments.of(6, Set.of(1, 2, 3, 4, 5, 6), Set.of(1, 2, 3, 4, 5, 6))
+        );
+    }
 }
