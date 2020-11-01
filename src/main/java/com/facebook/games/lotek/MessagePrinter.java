@@ -64,9 +64,7 @@ public class MessagePrinter {
     }
 
     protected String stringifySet(Set<Integer> numbers){
-        return Stream.of(numbers)
-                .map(String::valueOf)
-                .collect(Collectors.joining(","))
+        return numbers.toString()
                 .replace("[", "")
                 .replace("]", "");
     }

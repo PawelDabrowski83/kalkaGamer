@@ -1,6 +1,7 @@
 package com.facebook.games.lotek;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,4 +29,5 @@ public class MessagePrinterTest {
                 Arguments.of("5, 10, 11, 19", new TreeSet<Integer>(Set.of(5, 11, 19, 10)))
         );
     }
+
 }
