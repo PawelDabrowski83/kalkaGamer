@@ -1,4 +1,4 @@
-# kalkaGamer
+# qalkaGamer
 
 Scenariusz działania mini gry Lotek:
 <ol>
