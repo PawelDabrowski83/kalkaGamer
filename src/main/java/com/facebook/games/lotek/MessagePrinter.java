@@ -64,7 +64,7 @@ public class MessagePrinter {
     }
 
     protected String stringifySet(Set<Integer> numbers){
-        return numbers.toString().replaceAll("\\[|]", "");
+        return numbers.toString().replaceAll("[]\\[]", "");
     }
 
 }
