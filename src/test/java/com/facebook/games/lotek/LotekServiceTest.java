@@ -54,8 +54,12 @@ public class LotekServiceTest {
     }
     private static Stream<Arguments> isNumberOutOfBoundsArgumentsProvider(){
         return Stream.of(
-                Arguments.of(true, 1),
-                Arguments.of(false, 0)
+                Arguments.of(true, LotekConfiguration.LOWER_LIMIT_LOTTERY_NUMBERS - 1),
+                Arguments.of(false, LotekConfiguration.LOWER_LIMIT_LOTTERY_NUMBERS),
+                Arguments.of(false, LotekConfiguration.UPPER_LIMIT_LOTTERY_NUMBERS),
+                Arguments.of(true, LotekConfiguration.UPPER_LIMIT_LOTTERY_NUMBERS + 1),
+                Arguments.of(true, Integer.MIN_VALUE),
+                Arguments.of(true, Integer.MAX_VALUE)
         );
     }
 }
