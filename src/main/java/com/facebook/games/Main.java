@@ -1,7 +1,6 @@
 package com.facebook.games;
 
 import com.facebook.games.gameInterfaces.GameWithScanner;
-import com.facebook.games.lotek.LotekConfiguration;
 import com.facebook.games.lotek.LotekGame;
 import com.facebook.games.lotek.LotekService;
 

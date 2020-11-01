@@ -2,7 +2,7 @@ package com.facebook.games.lotek;
 
 public class LotekConfiguration {
     public static final int LOWER_LIMIT_LOTTERY_NUMBERS = 1;
-    public static final int UPPER_LIMIT_LOTTERY_NUMBERS = 66;
+    public static final int UPPER_LIMIT_LOTTERY_NUMBERS = 99;
     public static final int NUMBER_POOL = 6;
     protected static final String INTRODUCTION = "Welcome to the Lottery Game.\n" +
             "Pick 6 numbers within range %d-%d and check your luck!\n";
