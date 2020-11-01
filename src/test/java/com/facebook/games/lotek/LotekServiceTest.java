@@ -33,7 +33,8 @@ public class LotekServiceTest {
     @ParameterizedTest
     @MethodSource("isNumberDuplicateArgumentsProvider")
     void isNumberDuplicate(boolean expected, int number, Set<Integer> numberPool){
-        assertEquals(expected, lotekService.isNumberDuplicate(number, numberPool));
+        lotekService = new LotekService(numberPool);
+        assertEquals(expected, lotekService.isNumberDuplicate(number));
     }
     private static Stream<Arguments> isNumberDuplicateArgumentsProvider(){
         return Stream.of(
@@ -42,6 +43,19 @@ public class LotekServiceTest {
                 Arguments.of(false, 1, Collections.emptySet()),
                 Arguments.of(false, Integer.MAX_VALUE, Set.of(1, 2, 3)),
                 Arguments.of(true, Integer.MIN_VALUE, Set.of(Integer.MIN_VALUE, Integer.MAX_VALUE, -19))
+        );
+    }
+
+    @DisplayName("Should isNumberOutOfBounds() work")
+    @ParameterizedTest
+    @MethodSource("isNumberOutOfBoundsArgumentsProvider")
+    void isNumberOutOfBounds(boolean expected, int number){
+        assertEquals(expected, lotekService.isNumberOutOfBounds(number));
+    }
+    private static Stream<Arguments> isNumberOutOfBoundsArgumentsProvider(){
+        return Stream.of(
+                Arguments.of(true, 1),
+                Arguments.of(false, 0)
         );
     }
 }

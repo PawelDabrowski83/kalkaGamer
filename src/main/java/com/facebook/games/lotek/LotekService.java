@@ -2,36 +2,42 @@ package com.facebook.games.lotek;
 
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
+
+import static com.facebook.games.lotek.LotekConfiguration.*;
 
 public class LotekService {
-
-    protected static final String INTRODUCTION = "Welcome to the Lottery Game.\n" +
-            "Pick 6 numbers within range %d-%d and check your luck!\n";
-    protected static final String NUMBER_INPUT = "Please enter a number:";
-    protected static final String NUMBER_INPUT_STRONGER = "Please enter real number:";
-    protected static final String NUMBER_DUPLICATE = "Your number is already saved, please enter a unique number";
-    protected static final String NUMBER_OUT_BOUNDS = "Number out of range: %d-%d\n";
-    protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %s\n";
     private final Scanner scanner;
+    private final Set<Integer> numberPool;
+    private final Set<Integer> winningPool;
 
     public LotekService(Scanner scanner) {
         this.scanner = scanner;
+        this.numberPool = new TreeSet<>();
+        this.winningPool = new TreeSet<>();
+    }
+
+    // for tests
+    protected LotekService(Set<Integer> numberPool){
+        this.scanner = new Scanner(System.in);
+        this.numberPool = numberPool;
+        this.winningPool = new TreeSet<>();
     }
 
     protected void displayIntroduction(){
-        System.out.printf(INTRODUCTION, LotekGame.LOWER_LIMIT_LOTTERY_NUMBERS, LotekGame.UPPER_LIMIT_LOTTERY_NUMBERS);
+        System.out.printf(INTRODUCTION, LOWER_LIMIT_LOTTERY_NUMBERS, UPPER_LIMIT_LOTTERY_NUMBERS);
     }
 
-    protected void collectNumbers(Set<Integer> numberPool){
-        while(numberPool.size() < LotekGame.NUMBER_POOL){
+    protected void collectNumbers(){
+        while(numberPool.size() < NUMBER_POOL){
             int numberInput = getNumber();
 
-            if (isNumberDuplicate(numberInput, numberPool)){
+            if (isNumberDuplicate(numberInput)){
                 System.out.println(NUMBER_DUPLICATE);
                 continue;
             }
             if (isNumberOutOfBounds(numberInput)){
-                System.out.printf(NUMBER_OUT_BOUNDS, LotekGame.LOWER_LIMIT_LOTTERY_NUMBERS, LotekGame.UPPER_LIMIT_LOTTERY_NUMBERS);
+                System.out.printf(NUMBER_OUT_BOUNDS, LOWER_LIMIT_LOTTERY_NUMBERS, UPPER_LIMIT_LOTTERY_NUMBERS);
                 continue;
             }
             numberPool.add(numberInput);
@@ -39,7 +45,6 @@ public class LotekService {
     }
 
     private int getNumber(){
-        int number = -1;
         System.out.println(NUMBER_INPUT);
         while(!scanner.hasNextInt()){
             scanner.next();
@@ -48,16 +53,16 @@ public class LotekService {
         return scanner.nextInt();
     }
 
-    protected boolean isNumberDuplicate(int number, Set<Integer> numberPool){
+    protected boolean isNumberDuplicate(int number){
         return numberPool.contains(number);
     }
 
     protected boolean isNumberOutOfBounds(int number){
-        return number > LotekGame.UPPER_LIMIT_LOTTERY_NUMBERS || number < LotekGame.LOWER_LIMIT_LOTTERY_NUMBERS;
+        return number > UPPER_LIMIT_LOTTERY_NUMBERS || number < LOWER_LIMIT_LOTTERY_NUMBERS;
     }
 
-    protected void displayUserNumbers(Set<Integer> numbers){
-        String numberPoolAsString = stringifySet(numbers);
+    protected void displayUserNumbers(){
+        String numberPoolAsString = stringifySet(numberPool);
         System.out.printf(NUMBER_POOL_COMPLETED, numberPoolAsString);
     }
 
