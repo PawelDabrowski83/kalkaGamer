@@ -16,5 +16,8 @@ public class LotekGame implements GameWithScanner {
         lotekService.displayIntroduction();
         lotekService.collectNumbers();
         lotekService.displayUserNumbers();
+        lotekService.getWinningNumbers();
+        lotekService.displayWinningNumbers();
+        lotekService.displayLotteryResolution();
     }
 }

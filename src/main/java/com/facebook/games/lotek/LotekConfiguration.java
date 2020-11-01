@@ -11,5 +11,6 @@ public class LotekConfiguration {
     protected static final String NUMBER_DUPLICATE = "Your number is already saved, please enter a unique number";
     protected static final String NUMBER_OUT_BOUNDS = "Number out of range: %d-%d\n";
     protected static final String NUMBER_POOL_COMPLETED = "Your numbers: %s\n";
-
+    protected static final String WINNING_NUMBERS_PRESENTATION = "Winning numbers are: %s\n";
+    protected static final String DISPLAY_RESULT = "You have guessed %d numbers.\n";
 }
