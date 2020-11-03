@@ -13,7 +13,7 @@ public class LotekGameTest {
 
     @Test
     public void shouldPlayTriggerAllMethods(){
-        lotekGame.play(new Scanner(System.in));
+        lotekGame.play();
         verify(lotekService, times(1)).displayIntroduction();
         verify(lotekService, times(1)).collectNumbers();
         verify(lotekService, times(1)).displayUserNumbers();
