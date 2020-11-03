@@ -12,18 +12,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UtilsTest {
 
-    @DisplayName("Should getRandomNumber() return number within given limits")
+    @DisplayName("Should getRandomNumber() return number not lower than lower boundary")
     @ParameterizedTest
     @MethodSource("getRandomNumberArgumentsProvider")
-    void getRandomNumber(int inclusiveFrom, int inclusiveTo){
+    void shouldGetRandomNumberReturnNumberNotLowerThanLowerBoundary(int inclusiveFrom, int inclusiveTo){
         int loops = 100_000;
         while (loops > 0){
             int currentRandomInt = Utils.getRandomNumber(inclusiveFrom, inclusiveTo);
             assertTrue(currentRandomInt >= inclusiveFrom);
+            loops--;
+        }
+    }
+
+    @DisplayName("Should getRandomNumber() return number not higher than upper boundary")
+    @ParameterizedTest
+    @MethodSource("getRandomNumberArgumentsProvider")
+    void shouldGetRandomNumberReturnNumberNotBiggerThanUpperBoundary(int inclusiveFrom, int inclusiveTo){
+        int loops = 100_000;
+        while (loops > 0){
+            int currentRandomInt = Utils.getRandomNumber(inclusiveFrom, inclusiveTo);
             assertTrue(currentRandomInt <= inclusiveTo);
             loops--;
         }
     }
+
     private static Stream<Arguments> getRandomNumberArgumentsProvider(){
         return Stream.of(
                 Arguments.of(1, 10),

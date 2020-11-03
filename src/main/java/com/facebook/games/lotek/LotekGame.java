@@ -1,10 +1,10 @@
 package com.facebook.games.lotek;
 
-import com.facebook.games.gameInterfaces.GameWithScanner;
+import com.facebook.games.gameInterfaces.Game;
 
 import java.util.Scanner;
 
-public class LotekGame implements GameWithScanner {
+public class LotekGame implements Game {
     private final LotekService lotekService;
 
     public LotekGame(LotekService lotekService) {
@@ -12,7 +12,7 @@ public class LotekGame implements GameWithScanner {
     }
 
     @Override
-    public void play(Scanner scanner) {
+    public void play() {
         lotekService.displayIntroduction();
         lotekService.collectNumbers();
         lotekService.displayUserNumbers();
