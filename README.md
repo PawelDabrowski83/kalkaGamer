@@ -1,5 +1,8 @@
 # qalkaGamer
 
+This is a coding challenge from one of study groups.
+
+## Task description:
 Scenariusz działania mini gry Lotek:
 <ol>
 <li>Użytkownik wpisuje 6 liczb.</li>
